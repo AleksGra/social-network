@@ -11,6 +11,7 @@ const initialState:initialStateType= {
 };
 
 
+// @ts-ignore
 const appReducer = (state = initialState, action):initialStateType  => {
   switch (action.type) {
     case SET_INITIALIZED_SUCCESS:
@@ -23,7 +24,8 @@ const appReducer = (state = initialState, action):initialStateType  => {
   }
 };
 export const initializeApp = () => {
-  return dispatch => {
+  // @ts-ignore
+    return dispatch => {
    let promise= dispatch(getAuthUserDataThunk())
     Promise.all([promise])
         .then(()=>{
