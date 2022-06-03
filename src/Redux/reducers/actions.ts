@@ -14,60 +14,60 @@ export const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
 export const SET_INITIALIZED_SUCCESS = 'SET_INITIALIZED_SUCCESS';
 export const SET_PROFILE_PHOTO='SET_PROFILE_PHOTO'
 
-export const addPostCreator = text => ({
+export const addPostCreator = (text:string ) => ({
   type: ADD_POST,
   payload: {
     text,
   },
 });
 
-export const sendMessageCreator = text => ({
+export const sendMessageCreator = (text:string )=> ({
   type: SEND_MESSAGE,
   payload: {
     text,
   },
 });
 
-export const followActionCreator = userId => ({
+export const followActionCreator = (userId:number) => ({
   type: SET_FOLLOW,
   payload: {
     userId,
   },
 });
 
-export const unFollowActionCreator = userId => ({
+export const unFollowActionCreator = (userId:number) => ({
   type: SET_UNFOLLOW,
   payload: {
     userId,
   },
 });
 
-export const setUsersAC = users => ({
+export const setUsersAC = (users:any) => ({
   type: SET_USERS,
   payload: {
     users,
   },
 });
 
-export const setCurrentPage = currentPage => ({
+export const setCurrentPage = (currentPage:number) => ({
   type: SET_CURRENT_PAGE,
   payload: {
     currentPage,
   },
 });
-export const setUsersCount = totalCount => ({
+export const setUsersCount = (totalCount:number) => ({
   type: SET_TOTAL_COUNT,
   payload: {
     totalCount,
   },
 });
-export const toggleIsLoadingAC = isLoading => ({
+export const toggleIsLoadingAC = (isLoading:boolean) => ({
   type: TOGGLE_IS_LOADING,
   payload: {
     isLoading,
   },
 });
-export const setProfileAC = profile => ({
+export const setProfileAC = (profile:any) => ({
   type: SET_PROFILE,
   payload: {
     profile,
@@ -98,20 +98,20 @@ export const authAC = (email:string|null, id:number|null, login:string|null, isA
   },
 });
 
-export const followingInProgressAC = (isFetching, userId) => ({
+export const followingInProgressAC = (isFetching:boolean, userId:number) => ({
   type: TOGGLE_IS_FOLLOW_PROGRESS,
   payload: {
     isFetching,
     userId,
   },
 });
-export const setProfileStatusAC = status => ({
+export const setProfileStatusAC = (status:string) => ({
   type: SET_PROFILE_STATUS,
   payload: {
     status,
   },
 });
-export const setProfilePhotoAC = file => ({
+export const setProfilePhotoAC = (file:string) => ({
   type: SET_PROFILE_PHOTO,
   payload: {
     file,

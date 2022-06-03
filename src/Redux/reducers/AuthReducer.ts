@@ -1,4 +1,5 @@
 import {authAC, SET_AUTH_DATA, SET_TOTAL_COUNT} from './actions';
+// @ts-ignore
 import {authAPI, securityAPI} from '../../API/api';
 
 const GET_CAPTCHA_URL_SUCCESS='GET_CAPTCHA_URL_SUCCESS'
@@ -34,8 +35,8 @@ const authReducer = (state = initialState, action:any):InitialStateType => {
   }
 };
 export const getAuthUserDataThunk = () => {
-  return dispatch => {
-    authAPI.getMe().then(data => {
+  return (dispatch:any) => {
+    authAPI.getMe().then((data:any) => {
       if (data.resultCode === 0) {
         let { login, id, email } = data.data;
         dispatch(authAC(email, id, login, true));
@@ -43,9 +44,9 @@ export const getAuthUserDataThunk = () => {
     });
   };
 };
-export const loginThunk = (email, password, rememberMe,captcha) => {
-  return dispatch => {
-    authAPI.login(email, password, rememberMe,captcha).then(data => {
+export const loginThunk = (email:string, password:string, rememberMe:boolean,captcha:string) => {
+  return (dispatch:any) => {
+    authAPI.login(email, password, rememberMe,captcha).then((data:any) => {
       if (data.resultCode === 0) {
         dispatch(getAuthUserDataThunk());
       }else{
@@ -56,8 +57,9 @@ export const loginThunk = (email, password, rememberMe,captcha) => {
     });
   };
 };
+
 export const getCaptchaUrl = () =>
-  async(dispatch)=>{
+  async(dispatch:any)=>{
     const response=await securityAPI.getCaptchaUrl();
     const captchaUrl=response.data.url
     dispatch(getCaptchaUrlSuccess(captchaUrl))
@@ -66,8 +68,8 @@ export const getCaptchaUrl = () =>
 
 
 export const logoutThunk = () => {
-  return dispatch => {
-    authAPI.logout().then(data => {
+  return (dispatch:any) => {
+    authAPI.logout().then((data:any) => {
       if (data.resultCode === 0) {
         dispatch(authAC(null, null, null, false));
       }
