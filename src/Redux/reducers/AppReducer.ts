@@ -1,23 +1,21 @@
-import { SET_INITIALIZED_SUCCESS, setInitializedSuccessAC} from './actions';
+import { SET_INITIALIZED_SUCCESS, setInitializedSuccessAC } from './actions';
 
-import {getAuthUserDataThunk} from "./AuthReducer";
+import { getAuthUserDataThunk } from './AuthReducer';
 
 export type initialStateType = {
   initialized: boolean;
 };
-const initialState:initialStateType= {
+const initialState: initialStateType = {
   initialized: false,
-
 };
 
-
 // @ts-ignore
-const appReducer = (state = initialState, action):initialStateType  => {
+const appReducer = (state = initialState, action): initialStateType => {
   switch (action.type) {
     case SET_INITIALIZED_SUCCESS:
       return {
         ...state,
-        initialized:true,
+        initialized: true,
       };
     default:
       return state;
@@ -25,13 +23,12 @@ const appReducer = (state = initialState, action):initialStateType  => {
 };
 export const initializeApp = () => {
   // @ts-ignore
-    return dispatch => {
-   let promise= dispatch(getAuthUserDataThunk())
-    Promise.all([promise])
-        .then(()=>{
-          dispatch(setInitializedSuccessAC())
-        })
-    };
+  return dispatch => {
+    let promise = dispatch(getAuthUserDataThunk());
+    Promise.all([promise]).then(() => {
+      dispatch(setInitializedSuccessAC());
+    });
   };
+};
 
 export default appReducer;
